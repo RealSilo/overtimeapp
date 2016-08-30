@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 gem 'devise', '~> 4.2'
 gem 'faker', '~> 1.6', '>= 1.6.6'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 
 group :development, :test do

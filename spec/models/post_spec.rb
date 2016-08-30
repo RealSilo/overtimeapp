@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe "creation" do
     before do
-      @post = Post.create(date: Date.today, rationale: "testing post")
+      user = create(:user)
+      @post = build_stubbed(:post, user: user)
     end
 
     it "can be created" do

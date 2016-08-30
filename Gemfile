@@ -11,6 +11,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 gem 'devise', '~> 4.2'
+gem 'faker', '~> 1.6', '>= 1.6.6'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -25,6 +27,8 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'hirb', '~> 0.7.3'
+  gem 'better_errors', '~> 2.1', '>= 2.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

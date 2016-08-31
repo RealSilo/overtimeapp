@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2'
 gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-
+gem 'gritter', '~> 1.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

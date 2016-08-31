@@ -1,0 +1,5 @@
+<% if object.errors.any? %>
+  <% object.errors.full_messages.each do |msg| %>
+    <%= js add_gritter(msg, title: "#{object.class} Validation Error", sticky: true) %>
+  <% end %>
+<% end %>

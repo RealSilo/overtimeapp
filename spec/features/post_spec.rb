@@ -26,6 +26,14 @@ describe 'navigate' do
     end
   end
 
+  describe 'new post' do
+    it 'has a link from the homepage' do
+      visit root_path
+      click_link 'New Entry'
+      expect(page.status_code).to eq(200)
+    end
+  end
+
   describe 'creating post' do
     before do
       visit new_post_path
@@ -63,11 +71,29 @@ describe 'navigate' do
     end
 
     it 'can be edited' do
-      visit edit_post_path(@post)
+      visit posts_path
+      within "#edit_post_#{@post.id}" do
+        click_on 'Edit'
+      end
+      expect(page).to have_content("#{@post.rationale}")
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited content"
-      click_on "Save"
+      click_on 'Save'
       expect(page).to have_content("Edited content")
+    end
+  end
+
+  describe 'deleting post' do
+    before do
+      @post = create(:post, user: @user)
+    end
+
+    it 'can be deleted' do
+      visit posts_path
+      within "#delete_post_#{@post.id}" do
+        click_on 'Delete'
+      end
+      expect(page.status_code).to eq(200)
     end
   end
 end

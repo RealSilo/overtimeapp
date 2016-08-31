@@ -11,7 +11,10 @@
   <td>
     <%= truncate(post.rationale) %>
   </td>
-  <td id='<%= "edit_#{post.id}" %>'>
+  <td id='<%= "edit_post_#{post.id}" %>'>
     <%= link_to 'Edit', edit_post_path(post) %>
+  </td>
+  <td id='<%= "delete_post_#{post.id}" %>'>
+    <%= link_to 'Delete', post_path(post), method: :delete %>
   </td>
 </tr>

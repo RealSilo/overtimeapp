@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   def index
     @posts = Post.all
@@ -31,6 +31,14 @@ class PostsController < ApplicationController
       redirect_to @post, notice: 'You post was updated successfully!'
     else
       render :new
+    end
+  end
+
+  def destroy
+    if @post.destroy
+      redirect_to posts_path, notice: 'Your post was destroyed successfully!'
+    else
+      redirect_to posts_path, notice: 'Your post could not be deleted!'
     end
   end
 

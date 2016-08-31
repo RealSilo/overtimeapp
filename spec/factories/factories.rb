@@ -9,7 +9,6 @@ FactoryGirl.define do
 
   factory :admin_user do
     sequence(:email) { |n| "admin_example#{n}@gmail.com" }
-    confirmed_at { Faker::Time.between(DateTime.now - 1, DateTime.now - 2) }
     password 'example0000'
     password_confirmation 'example0000'
     first_name Faker::Name.first_name

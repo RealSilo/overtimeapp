@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pundit:
+    default: "You can't perform this action!"
+    post_policy:
+      edit?: "You must be the owner to be able to update the post"
+      update?: "You must be the owner to be able to update the post"
+      destroy?: "You must be the owner to be able to update the post"

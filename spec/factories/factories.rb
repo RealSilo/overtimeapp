@@ -7,7 +7,15 @@ FactoryGirl.define do
     last_name Faker::Name.last_name
   end
 
-  factory :admin_user do
+  factory :admin_user, class: "AdminUser" do
+    sequence(:email) { |n| "admin_example#{n}@gmail.com" }
+    password 'example0000'
+    password_confirmation 'example0000'
+    first_name Faker::Name.first_name
+    last_name Faker::Name.last_name
+  end
+
+  factory :non_authorized_user, class: "User" do
     sequence(:email) { |n| "admin_example#{n}@gmail.com" }
     password 'example0000'
     password_confirmation 'example0000'

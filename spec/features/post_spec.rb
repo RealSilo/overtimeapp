@@ -64,13 +64,7 @@ describe 'navigate' do
       @post = create(:post, user: @user)
     end
 
-    it 'can be reached by going to edit page' do
-      visit posts_path
-      click_link 'Edit'
-      expect(page.status_code).to eq(200)
-    end
-
-    it 'can be edited' do
+    it 'can be edited by an authorized user' do
       visit posts_path
       within "#edit_post_#{@post.id}" do
         click_on 'Edit'
@@ -80,6 +74,14 @@ describe 'navigate' do
       fill_in 'post[rationale]', with: "Edited content"
       click_on 'Save'
       expect(page).to have_content("Edited content")
+    end
+
+    it 'can not be edit by a non authorized user' do
+      logout(:user)
+      non_authorized_user = create(:non_authorized_user)
+      login_as(non_authorized_user, scope: :user)
+      visit edit_post_path(@post)
+      expect(current_path).to eq(root_path)
     end
   end
 

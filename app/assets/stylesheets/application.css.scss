@@ -3,7 +3,15 @@
 @import 'posts.css';
 @import 'gritter';
 @import 'bourbon';
+@import 'font-awesome';
 
 .custom-nav {
   margin-top: 15px;
+}
+
+.index-icon {
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
 }

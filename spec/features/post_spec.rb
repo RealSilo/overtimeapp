@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe 'navigate' do
+  let(:user) { create(:user) }
+  let!(:post) { create(:post, user: user, rationale: "haha") }
 
   before do
-    @user = create(:user)
-    login_as(@user, scope: :user)
+    login_as(user, scope: :user)
   end
 
   describe 'index' do
@@ -19,12 +20,20 @@ describe 'navigate' do
     end
 
     it 'has a list of posts' do
-      post1 = build_stubbed(:post, user: @user)
-      post2 = build_stubbed(:second_post, user: @user)
+      post2 = create(:second_post, user: user, rationale: "hihi")
       visit posts_path
-      expect(page).to have_content
+      expect(page).to have_content("haha")
+      expect(page).to have_content("hihi")
     end
-  end
+
+    it 'lists only authorized posts' do
+      user_na = create(:non_authorized_user)
+      post2 = create(:second_post, user: user_na, rationale: "hihi")
+      visit posts_path
+      expect(page).to have_content("haha")
+      expect(page).to_not have_content("hihi")
+    end
+  end 
 
   describe 'new post' do
     it 'has a link from the homepage' do
@@ -60,16 +69,13 @@ describe 'navigate' do
   end
 
   describe 'updating post' do
-    before do
-      @post = create(:post, user: @user)
-    end
 
     it 'can be edited by an authorized user' do
       visit posts_path
-      within "#edit_post_#{@post.id}" do
+      within "#edit_post_#{post.id}" do
         click_on 'Edit'
       end
-      expect(page).to have_content("#{@post.rationale}")
+      expect(page).to have_content("#{post.rationale}")
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited content"
       click_on 'Save'
@@ -80,19 +86,16 @@ describe 'navigate' do
       logout(:user)
       non_authorized_user = create(:non_authorized_user)
       login_as(non_authorized_user, scope: :user)
-      visit edit_post_path(@post)
+      visit edit_post_path(post)
       expect(current_path).to eq(root_path)
     end
   end
 
   describe 'deleting post' do
-    before do
-      @post = create(:post, user: @user)
-    end
 
     it 'can be deleted' do
       visit posts_path
-      within "#delete_post_#{@post.id}" do
+      within "#delete_post_#{post.id}" do
         click_on 'Delete'
       end
       expect(page.status_code).to eq(200)

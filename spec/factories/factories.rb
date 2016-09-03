@@ -26,10 +26,12 @@ FactoryGirl.define do
   factory :post do
     date Faker::Date.between(2.months.ago, Date.today)
     rationale Faker::Lorem.sentence
+    overtime_request Faker::Number.decimal(1, 1)
   end
 
   factory :second_post, class: "Post" do
     date Faker::Date.between(2.months.ago, Date.today)
     rationale Faker::Lorem.sentence
+    overtime_request Faker::Number.decimal(1, 1)
   end 
 end

@@ -73,10 +73,9 @@ describe 'navigate' do
     it 'can be edited by an authorized user' do
       visit posts_path
       within "#edit_post_#{post.id}" do
-        click_on 'Edit'
+        page.find(".fa-pencil").click
       end
       expect(page).to have_content("#{post.rationale}")
-      fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited content"
       click_on 'Save'
       expect(page).to have_content("Edited content")
@@ -96,7 +95,7 @@ describe 'navigate' do
     it 'can be deleted' do
       visit posts_path
       within "#delete_post_#{post.id}" do
-        click_on 'Delete'
+        page.find(".fa-trash").click
       end
       expect(page.status_code).to eq(200)
     end

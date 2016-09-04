@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_confirmation 'example0000'
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
+    phone "6503536594"
   end
 
   factory :admin_user, class: "AdminUser" do
@@ -13,6 +14,7 @@ FactoryGirl.define do
     password_confirmation 'example0000'
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
+    phone "6503536594"
   end
 
   factory :non_authorized_user, class: "User" do
@@ -21,6 +23,7 @@ FactoryGirl.define do
     password_confirmation 'example0000'
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
+    phone "6503536594"
   end
 
   factory :post do

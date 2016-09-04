@@ -30,10 +30,5 @@ RSpec.describe Post, type: :model do
       post.rationale = nil
       expect(post).to_not be_valid
     end
-
-    it "can not be creted without overtime request" do
-      post.phone = nil
-      expect(post).to_not be_valid
-    end
   end
 end

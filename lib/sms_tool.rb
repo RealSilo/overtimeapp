@@ -6,7 +6,7 @@ module SmsTool
 
   def self.send_sms(number:, message:)
     @client.messages.create(
-      from: ENV['TWILIO_PHONE_NUMBER'],
+      from: Rails.application.secrets.twilio_phone,
       to: "+1#{number}",
       body: "#{message}"
     )

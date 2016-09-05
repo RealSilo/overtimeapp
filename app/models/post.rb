@@ -8,4 +8,5 @@ class Post < ApplicationRecord
   validates :rationale, presence: true
   validates :overtime_request,  presence: true, numericality: { greater_than: 0.0 }
   validates :user, presence: true
+  validates :status, presence: true
 end

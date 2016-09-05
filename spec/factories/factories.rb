@@ -36,5 +36,9 @@ FactoryGirl.define do
     date Faker::Date.between(2.months.ago, Date.today)
     rationale Faker::Lorem.sentence
     overtime_request Faker::Number.decimal(1, 1)
-  end 
+  end
+
+  factory :audit_log do
+    start_date Date.today - 6.days
+  end
 end

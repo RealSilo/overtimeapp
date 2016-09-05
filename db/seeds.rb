@@ -5,3 +5,7 @@ AdminUser.create(email: "admin@test.com", password: "asdfasdf", password_confirm
 100.times do |post|
   Post.create(date: Faker::Date.between(2.months.ago, Date.today), rationale: Faker::Lorem.sentence, user_id: @user.id, overtime_request: Faker::Number.decimal(1, 1))
 end
+
+50.times do |audit|
+  AuditLog.create(start_date: Faker::Date.between(2.months.ago, Date.today), user_id: @user.id)
+end

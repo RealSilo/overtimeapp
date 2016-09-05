@@ -306,6 +306,7 @@ DEPENDENCIES
   hirb (~> 0.7.3)
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari (~> 0.17.0)
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)

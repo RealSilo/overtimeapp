@@ -21,6 +21,6 @@
       </div>
     </div>
 
-    <%= js add_gritter(flash[:notice], title: "Notification", sticky: false) %>
+    <%= js add_gritter(flash[:notice], title: "Notification", sticky: false, time: 4000, class_name: "gritter-notification", on_click: '$(".gritter-notification").remove();') %>
   </body>
 </html>

@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe "creation" do
-    let(:post) { build_stubbed(:post) }
-    before do
-      user = create(:user)
-    end
+    let(:user) { build_stubbed(:user) }
+    let(:post) { build_stubbed(:post, user: user) }
 
     it "can be created" do
       expect(post).to be_valid

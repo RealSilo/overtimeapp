@@ -9,4 +9,13 @@ class Post < ApplicationRecord
   validates :overtime_request,  presence: true, numericality: { greater_than: 0.0 }
   validates :user, presence: true
   validates :status, presence: true
+
+  after_save :update_audit_log
+
+  private
+
+    def update_audit_log
+      audit_log = AuditLog.where(user_id: self.user_id, start_date: (self.date - 7.days..self.date)).last
+      audit_log.confirmed!
+    end
 end

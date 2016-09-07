@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :approve]
   
   def index
     @posts = current_user.posts.page(params[:page]).per(10)
@@ -34,6 +34,12 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def approve
+    authorize @post
+    @post.approved!
+    redirect_to root_path, notice: 'Post was successfully approved!'
   end
 
   def destroy

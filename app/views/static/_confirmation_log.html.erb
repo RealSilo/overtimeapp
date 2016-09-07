@@ -1,0 +1,18 @@
+<% recent_audit_logs.each_slice(3) do |audit_log_row| %>
+  <div class="pending-homepage row">
+    <% audit_log_row.each do |audit_log| %>
+      <div class="homepage-block col-md-3">
+        <h4><%= audit_log.user_full_name %></h4>
+        <p>
+          <span class="pending-details">Week starting:</span>Date submitted: <%= audit_log.start_date %>
+        </p>
+        <p>
+          <span class="pending-details">Confirmed at:</span> <%= audit_log.date_verified || status_label("pending") %> 
+        </p>
+        <p>
+          <span class="pending-details">Status:</span> <%= status_label(audit_log.status) %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<% pending_approvals.each_slice(3) do |pending_approval_row| %>
+  <div class="pending-homepage row">
+    <% pending_approval_row.each do |pending_approval| %>
+      <div class="homepage-block col-md-3">
+        <h4><%= pending_approval.user_full_name %></h4>
+        <p>
+          <span class="pending-details">Date submitted:</span>Date submitted: <%= pending_approval.date %>
+        </p>
+        <p>
+          <span class="pending-details">Rationale:</span> <%= truncate pending_approval.rationale, length: 42 %> 
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to "Approve", approve_post_path(pending_approval), method: :patch, id: "approve_post_#{pending_approval.id}", class: "btn btn-success btn-block" %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to "Review", edit_post_path(pending_approval), class: "btn btn-warning btn-block" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
 <div class="container-fluid">
-  <div class="pending-homepage row">
-    <div class="homepage-block col-md-3">
-      gaga
-    </div>
-  </div>
+  <h2>Items Pending Your Approval</h2>
+  
+  <%= render partial: 'pending_approval', locals: { pending_approvals: @pending_approvals } %>
 
-  <div class="pending-homepage">
+  <h2>Confirmation Log</h2>
 
+  <%= render partial: 'confirmation_log', locals: { recent_audit_logs: @recent_audit_logs } %>
+
+  <div style="padding-top:20px;">
+  <%= link_to 'View all logs', audit_logs_path, class: 'btn btn-primary' %>
   </div>
 </div>

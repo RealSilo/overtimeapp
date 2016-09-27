@@ -7,7 +7,7 @@ class AuditLogsController < ApplicationController
 
   def confirm
     @audit_log = AuditLog.find(params[:id])
-    # authorize @audit_log
+    authorize @audit_log
     @audit_log.confirmed!
     redirect_to root_path, notice: "Your confirmation has been made successfully"
   end

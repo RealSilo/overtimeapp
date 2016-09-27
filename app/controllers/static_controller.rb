@@ -1,4 +1,5 @@
 class StaticController < ApplicationController
+  before_action :authenticate_user!
   def homepage
     if current_user && admin_types.include?(current_user.type)
       @pending_approvals = Post.submitted
